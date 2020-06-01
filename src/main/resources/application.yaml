@@ -1,0 +1,24 @@
+# yaml基本语法
+# key:与value之间必须有一个空格
+person:
+  age: 24
+  adult: true
+  # 注意日期格式默认只支持yyyy/MM/dd格式，其它类型转换应该用类型安全的@Value注解去绑定
+  birth: 2020/11/11
+  #  map类型也支持行内写法：account: {cbc: "32123",tcb: "45815"}
+  # 注意map为<String,Sting>类型时，key设置为中文，或者value设置为数字时都会发生类型转换失败
+  account:
+    cbc: "32123"
+    tcb: "45815"
+  # list也支持行内写法：hobbies: [swim,golf,climb]
+  hobbies:
+    - swim
+    - golf
+    - climb
+  wife:
+    name: "lina"
+    age: 23
+    birth: 2010/10/10
+    gender: 女
+    email: abc
+  name: "张三"
