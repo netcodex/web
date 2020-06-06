@@ -24,4 +24,9 @@ public class HelloContoller {
     public void getMapInfo(@PathVariable("userid") String userid) {
         System.out.println("getHello!" + userid);
     }
+
+    @GetMapping("/hello/{userid}")
+    public void getPojoInfo(@PathVariable("userid") String userid) {
+        System.out.println("getHello!" + userid);
+    }
 }
