@@ -19,4 +19,9 @@ public class HelloContoller {
     public void getUserId(@PathVariable("userid") String userid) {
         System.out.println("getHello!" + userid);
     }
+
+    @GetMapping("/hello/{userid}")
+    public void getMapInfo(@PathVariable("userid") String userid) {
+        System.out.println("getHello!" + userid);
+    }
 }
