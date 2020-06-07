@@ -1,6 +1,7 @@
 package com.lizard.simpleweb.contoller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +29,10 @@ public class HelloContoller {
     @GetMapping("/hello/{userid}")
     public void getPojoInfo(@PathVariable("userid") String userid) {
         System.out.println("getHello!" + userid);
+    }
+
+    @ModelAttribute
+    public void getParamsMap(){
+
     }
 }
