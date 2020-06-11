@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserCtrl {
 
     @GetMapping
-    public void getUser(){
+    public void getUser() {
 
     }
 }
