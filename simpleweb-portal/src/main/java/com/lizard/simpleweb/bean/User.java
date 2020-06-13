@@ -3,8 +3,7 @@ package com.lizard.simpleweb.bean;
 import java.util.Date;
 
 /**
- * @author x
- * Date: 2020-05-21 16:14
+ * @author x Date: 2020-05-21 16:14
  */
 public class User {
     private String name;
@@ -55,13 +54,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
-                ", birth=" + birth +
-                '}';
+        return "User{" + "name='" + name + '\'' + ", age=" + age + ", email='" + email + '\'' + ", gender='" + gender
+            + '\'' + ", birth=" + birth + '}';
     }
 
 }

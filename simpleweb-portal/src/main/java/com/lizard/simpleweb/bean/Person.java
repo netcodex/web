@@ -1,16 +1,15 @@
 package com.lizard.simpleweb.bean;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
 /**
- * @author x
- * Date: 2020-05-21 16:21
+ * @author x Date: 2020-05-21 16:21
  */
 @Component
 // ConfigurationProperties还支持ignoreInvalidFields，ignoreUnknownFields忽略非法参数设置
@@ -84,14 +83,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", adult=" + adult +
-                ", birth=" + birth +
-                ", account=" + account +
-                ", hobbies=" + hobbies +
-                ", wife=" + wife +
-                '}';
+        return "Person{" + "name='" + name + '\'' + ", age=" + age + ", adult=" + adult + ", birth=" + birth
+            + ", account=" + account + ", hobbies=" + hobbies + ", wife=" + wife + '}';
     }
 }
