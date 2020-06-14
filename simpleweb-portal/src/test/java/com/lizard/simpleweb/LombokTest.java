@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
@@ -24,7 +25,7 @@ public class LombokTest {
     @Test
     public void testLombok() throws FileNotFoundException {
         // 自动关闭流
-        @Cleanup
+        // @Cleanup
         InputStream is = new FileInputStream("GI");
         LombokEntity.LombokEntityBuilder builder = new LombokEntity.LombokEntityBuilder();
         LombokEntity entity = builder.field("text").name("id").build();
@@ -32,10 +33,11 @@ public class LombokTest {
 
     @Data // 自动生成setter/getter、equals、canEqual、hashCode、toString
     @NoArgsConstructor
-    @RequiredArgsConstructor // 所有带有@NonNull注解的或者带有final修饰的成员变量生成对应的构造方法
+    // @RequiredArgsConstructor // 所有带有@NonNull注解的或者带有final修饰的成员变量生成对应的构造方法
+    @AllArgsConstructor
     @Builder // 采用Builder的模式构造实例
     @Slf4j // 获取Slf4j实例啦，直接log调用即可
-    private class LombokEntity {
+    private static class LombokEntity {
 
         @NonNull
         private String field;

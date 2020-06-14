@@ -40,13 +40,9 @@ public class Column {
     /**
      * 设定列类型。可选值有： <ui>
      * <li>normal（常规列，无需设定）
-     * <li/>
      * <li>checkbox（复选框列）
-     * <li/>
      * <li>radio（单选框列，layui 2.4.0 新增）
-     * <li/>
      * <li>numbers（序号列）
-     * <li/>
      * <li>space（空列）
      * <li/></ui>
      */
