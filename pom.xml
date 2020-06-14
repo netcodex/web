@@ -22,6 +22,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <lomlok.version>1.18.12</lomlok.version>
+        <jjwt.version>0.9.1</jjwt.version>
     </properties>
 
     <dependencies>
@@ -46,6 +48,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lomlok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
