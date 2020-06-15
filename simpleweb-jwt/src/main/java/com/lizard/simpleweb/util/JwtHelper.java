@@ -29,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class JwtHelper {
+    private static final String AUDIENCE = "apiAud";
     /**
      * 解析JWT
      * 
@@ -42,9 +43,10 @@ public class JwtHelper {
         try {
             byte[] secretBytes = DatatypeConverter.parseBase64Binary(secret);
             JwtParser jwtParser = Jwts.parser().setSigningKey(secretBytes);
-            return Optional.of(jwtParser.parseClaimsJws(token).getBody());
-        } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException | SignatureException
-            | IllegalArgumentException e) {
+            return Optional.ofNullable(jwtParser.parseClaimsJws(token).getBody());
+        } catch (ExpiredJwtException e) {
+            log.error("jwt expired.");
+        } catch (UnsupportedJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
             e.printStackTrace();
             log.error("jwt parse error: {}", e.getMessage());
         }
@@ -56,13 +58,13 @@ public class JwtHelper {
      *
      * @return token
      */
-    public static String generateJWT(String reqId, WebToken webToken) {
+    public static String generateJWT(String reqId, String userName, WebToken webToken) {
         SignatureAlgorithm algorithm = SignatureAlgorithm.HS256;
         byte[] apiKeySecret = DatatypeConverter.parseBase64Binary(webToken.getSecret());
         Key key = new SecretKeySpec(apiKeySecret, algorithm.getJcaName());
         Date now = Date.from(Instant.now());
-        JwtBuilder jwtBuilder =
-            Jwts.builder().setId(reqId).setIssuer(webToken.getIssuer()).setIssuedAt(now).signWith(algorithm, key);
+        JwtBuilder jwtBuilder = Jwts.builder().setId(reqId).setAudience(AUDIENCE).setSubject(userName)
+            .setIssuer(webToken.getIssuer()).setIssuedAt(now).signWith(algorithm, key);
         Instant exp = Instant.now().plusMillis(webToken.getExpireTime());
         return jwtBuilder.setExpiration(Date.from(exp)).setNotBefore(now).compact();
     }

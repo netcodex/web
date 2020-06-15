@@ -19,7 +19,7 @@ public class OptionalTest {
         Optional<String> op1 = Optional.of(text);
         Optional<Object> op2 = Optional.empty();
         Optional<String> op3 = Optional.ofNullable(noable);
-        // Optional<String> op4 = Optional.of(noable); // 参数必须为空，不然编译时即直接抛出空指针异常：Objects.requireNonNull
+        // Optional<String> op4 = Optional.of(noable); // 参数必须不为空，不然编译时即直接抛出空指针异常：Objects.requireNonNull
         Optional<String> op5 = Optional.ofNullable(text);
         // 2. 判断是否有值
         boolean b1 = op1.isPresent();
