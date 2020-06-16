@@ -37,6 +37,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
             <exclusions>
+                <!-- SpringBoot 2.2之后已集成Junit5 因此要排除掉兼容Junit4的测试引擎-->
                 <exclusion>
                     <groupId>org.junit.vintage</groupId>
                     <artifactId>junit-vintage-engine</artifactId>

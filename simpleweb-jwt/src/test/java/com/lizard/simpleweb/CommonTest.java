@@ -22,4 +22,9 @@ public class CommonTest {
         String decodeStr = new String(decoder.decode(str));
         System.out.println("decodeStr = " + decodeStr);// apic
     }
+
+    @Test
+    public void testAopContext() {
+
+    }
 }
