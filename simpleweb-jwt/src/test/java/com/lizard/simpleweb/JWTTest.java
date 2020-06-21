@@ -3,6 +3,7 @@ package com.lizard.simpleweb;
 import java.util.Date;
 import java.util.Optional;
 
+import com.lizard.simpleweb.model.WebToken;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

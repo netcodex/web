@@ -73,7 +73,6 @@ public class Column {
      * Boolean/Object 是否开启该列的自动合计功能，默认：false。 TRUE
      * <p>
      * 当开启时，则默认由前端自动合计当前行数据。从 layui 2.5.6 开始.
-     * <p>
      * 若接口直接返回了合计行数据，则优先读取接口合计行数据，格式如下：
      * 
      * <pre>

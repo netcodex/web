@@ -1,4 +1,4 @@
-package com.lizard.simpleweb;
+package com.lizard.simpleweb.model;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,6 +1,7 @@
 package com.lizard.simpleweb;
 
 import java.util.Base64;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,8 @@ public class CommonTest {
     }
 
     @Test
-    public void testAopContext() {
-
+    public void testStringFormat() {
+        String messageBody = String.format(Locale.ROOT, "age=%d&name=%s&email=%s", 24, "bob", "bob@gmail.com");
+        System.out.println("messageBody = " + messageBody);
     }
 }

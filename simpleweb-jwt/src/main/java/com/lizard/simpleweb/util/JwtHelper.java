@@ -8,7 +8,7 @@ import java.util.Optional;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
-import com.lizard.simpleweb.WebToken;
+import com.lizard.simpleweb.model.WebToken;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
