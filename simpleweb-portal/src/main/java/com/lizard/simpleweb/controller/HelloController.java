@@ -1,6 +1,7 @@
-package com.lizard.simpleweb.contoller;
+package com.lizard.simpleweb.controller;
 
-import com.lizard.simpleweb.bean.User;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,14 +9,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import javax.servlet.http.HttpSession;
+import com.lizard.simpleweb.bean.User;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
- * @author x
- * Date: 2020-06-06 16:29
+ * @author x Date: 2020-06-06 16:29
  */
 @RestController
-public class HelloContoller {
+@Api(value = "Hello管理", tags = "hello管理") // 作用于类上，用于说明类的作用
+public class HelloController {
     @GetMapping("/hello")
     public void hello() {
         System.out.println("helo!");
@@ -60,6 +64,7 @@ public class HelloContoller {
      * 直接通过ModelAttribute获取绑定的属性
      */
     @GetMapping("/hello/getModelAttr")
+    @ApiOperation(value = "根据ModelView注解获取参数值", notes = "根据ModelView注解获取参数值并打印") // 作用于方法上
     public void getModelAttribute(@ModelAttribute("userb") User user) {
         System.out.println("user = " + user);
     }
