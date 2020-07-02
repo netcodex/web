@@ -21,13 +21,13 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "Hello管理", tags = "hello管理") // 作用于类上，用于说明类的作用
 public class HelloController {
     @GetMapping("/hello")
-    public void hello() {
-        System.out.println("helo!");
+    public String hello() {
+        return "hello";
     }
 
     @GetMapping("/hello/{userid}")
-    public void getUserId(@PathVariable("userid") String userid) {
-        System.out.println("getHello!" + userid);
+    public String getUserId(@PathVariable("userid") String userid) {
+        return "getHello!" + userid;
     }
 
     /**

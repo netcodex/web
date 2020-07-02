@@ -4,15 +4,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Cleanup;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -26,7 +25,7 @@ public class LombokTest {
     public void testLombok() throws FileNotFoundException {
         // 自动关闭流
         // @Cleanup
-        InputStream is = new FileInputStream("GI");
+        // InputStream is = new FileInputStream("");
         LombokEntity.LombokEntityBuilder builder = new LombokEntity.LombokEntityBuilder();
         LombokEntity entity = builder.field("text").name("id").build();
     }

@@ -17,21 +17,23 @@
     <groupId>com.lizard</groupId>
     <artifactId>simpleweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>simpleweb</name>
-    <description>simpleweb demo project for Spring Boot</description>
+    <name>simpleWeb</name>
+    <description>simpleWeb demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
         <lomlok.version>1.18.12</lomlok.version>
         <jjwt.version>0.9.1</jjwt.version>
+        <swagger.version>2.9.2</swagger.version>
+        <mybatis.version>2.1.3</mybatis.version>
     </properties>
 
     <dependencies>
+        <!-- 使用日志框架 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -62,6 +64,7 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.21</version>
         </dependency>
+
     </dependencies>
 
     <build>
