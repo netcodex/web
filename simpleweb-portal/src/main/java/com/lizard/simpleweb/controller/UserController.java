@@ -31,7 +31,6 @@ public class UserController {
         user.setEmail("scott@gmail.com");
         user.setGender("male");
         int id = userMapper.insert(user);
-        System.out.println("id = " + id);
-        return userMapper.getUserById(id);
+        return userMapper.getUserById(user.getId());
     }
 }

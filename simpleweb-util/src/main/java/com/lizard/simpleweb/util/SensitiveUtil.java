@@ -1,5 +1,6 @@
 package com.lizard.simpleweb.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 /**
@@ -21,5 +22,11 @@ public class SensitiveUtil {
      */
     public static <T> String sensitiveFieldFilter(T t, String[] excludeFieldNames) {
         return ReflectionToStringBuilder.toStringExclude(t, excludeFieldNames);
+    }
+
+    public static String maskFieldString() {
+        char singleQuote = 39;
+        char asterisk = 42;
+        return StringUtils.wrap(StringUtils.repeat('*', 10), '\'');
     }
 }
