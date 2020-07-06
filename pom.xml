@@ -75,6 +75,7 @@
     <build>
         <plugins>
             <plugin>
+                <!-- SpringBoot Maven插件，可以打成直接运行的jar包并自动引入依赖的jar包，还可以指定默认启动类-->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>

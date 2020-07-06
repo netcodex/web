@@ -31,7 +31,7 @@ public class MybatisSensitiveDataInterceptor implements Interceptor {
         BoundSql boundSql = mappedStatement.getBoundSql(parameters);
         Configuration configuration = mappedStatement.getConfiguration();
         Log stmtLog = mappedStatement.getStatementLog();
-        stmtLog.debug(getformattedParamterString(configuration, boundSql));
+        stmtLog.debug("CustomParameters: " + getformattedParamterString(configuration, boundSql));
         return invocation.proceed();
     }
 
