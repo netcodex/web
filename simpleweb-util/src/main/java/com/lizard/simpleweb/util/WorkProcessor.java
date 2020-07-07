@@ -17,7 +17,6 @@ public class WorkProcessor {
         WorkProcessor workProcessor = new WorkProcessor();
         BaseResponse baseResponse = new BaseResponse();
         ResponseListener listener = new ResponseListener();
-        listener.setResponse(baseResponse);
         listener.setProcessor(workProcessor);
         // BaseResponse response = listener.doRequestWork();
         BaseResponse response = workProcessor.doWork(listener);
