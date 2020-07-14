@@ -1,10 +1,15 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
+import com.alibaba.fastjson.JSON;
 import com.lizard.simpleweb.util.SensitiveUtil;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 描述：
@@ -46,5 +51,47 @@ public class SensitiveDataTest {
         matcher.appendTail(buffer);
 
         return buffer.toString();
+    }
+
+    @Test
+    public void testJsonFilter() {
+        User user = new User();
+        user.setUsername("alexander");
+        user.setPassword("#an&3%f4");
+
+        Card card1 = new Card(1001, "工商银行", "897564");
+        Card card2 = new Card(1006, "建设银行", "583456");
+        Card card3 = new Card(1011, "农业银行", "589642");
+        Card card4 = new Card(1016, "招商银行", "258945");
+
+        List<Card> cards = new ArrayList<>();
+        cards.add(card1);
+        cards.add(card2);
+        cards.add(card3);
+
+        List<Card> cards1 = new ArrayList<>();
+        cards1.add(card4);
+
+        User wife = new User();
+        wife.setUsername("catalina");
+        wife.setPassword("&t34@yu%5+");
+        wife.setCards(cards1);
+
+        user.setCards(cards);
+        user.setWife(wife);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("reqUrl", "/api/data/page");
+        map.put("method", "Post");
+        map.put("reqParams", "username=liwei,password=e37$af6=");
+        map.put("reqBody", user);
+
+        String logDetail = JSON.toJSONString(map);
+        System.out.println("logDetail = " + logDetail);
+
+        Object log = JSON.parse(logDetail);
+
+        SensitiveUtil.jsonFieldFilter(log);
+        System.out.println("log.toString() = " + log.toString());
     }
 }
