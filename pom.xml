@@ -7,6 +7,8 @@
         <module>simpleweb-util</module>
         <module>simpleweb-jwt</module>
         <module>simpleweb-portal</module>
+        <module>simpleweb-controller</module>
+        <module>simpleweb-task</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
