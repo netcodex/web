@@ -1,14 +1,9 @@
 package com.lizard.simpleweb.util;
 
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONException;
-import com.alibaba.fastjson.JSONObject;
-
-import java.util.regex.Pattern;
 
 /**
  * 描述：
@@ -40,38 +35,38 @@ public class SensitiveUtil {
     public static final String field = "password";
 
     public static boolean hasSensitiveItem(String str) {
-        Pattern pattern = Pattern.compile("[]");
+        Pattern pattern = Pattern.compile("");
         return false;
     }
 
     // 遍历嵌套JSON
-    public static void jsonFieldFilter(Object objJson) {
-        if (objJson instanceof JSONArray) {
-            JSONArray objArray = (JSONArray)objJson;
-            for (Object o : objArray) {
-                jsonFieldFilter(o);
-            }
-        } else if (objJson instanceof JSONObject) {
-            JSONObject jsonObject = (JSONObject)objJson;
-            for (String key : jsonObject.keySet()) {
-                Object object = jsonObject.get(key);
-                try {
-                    Object json = JSON.toJSON(object);
-                    if (json instanceof JSONArray) {
-                        JSONArray objArray = (JSONArray)json;
-                        jsonFieldFilter(objArray);
-                    } else if (json instanceof JSONObject) {
-                        jsonFieldFilter(json);
-                        jsonObject.put(key, json);
-                    }
-                    if (json instanceof String && field.equals(key)) {
-                        jsonObject.replace(key, object, "******");
-                    }
-                } catch (JSONException ignored) {
-
+    /*    public static void jsonFieldFilter(Object objJson) {
+    if (objJson instanceof JSONArray) {
+        JSONArray objArray = (JSONArray)objJson;
+        for (Object o : objArray) {
+            jsonFieldFilter(o);
+        }
+    } else if (objJson instanceof JSONObject) {
+        JSONObject jsonObject = (JSONObject)objJson;
+        for (String key : jsonObject.keySet()) {
+            Object object = jsonObject.get(key);
+            try {
+                Object json = JSON.toJSON(object);
+                if (json instanceof JSONArray) {
+                    JSONArray objArray = (JSONArray)json;
+                    jsonFieldFilter(objArray);
+                } else if (json instanceof JSONObject) {
+                    jsonFieldFilter(json);
+                    jsonObject.put(key, json);
                 }
-
+                if (json instanceof String && field.equals(key)) {
+                    jsonObject.replace(key, object, "******");
+                }
+            } catch (JSONException ignored) {
+    
             }
+    
         }
     }
+    }*/
 }

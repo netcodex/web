@@ -1,15 +1,15 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lizard.simpleweb.util.SensitiveUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
-
-import com.alibaba.fastjson.JSON;
-import com.lizard.simpleweb.util.SensitiveUtil;
 
 /**
  * 描述：
@@ -54,7 +54,7 @@ public class SensitiveDataTest {
     }
 
     @Test
-    public void testJsonFilter() {
+    public void testJsonFilter() throws JsonProcessingException {
         User user = new User();
         user.setUsername("alexander");
         user.setPassword("#an&3%f4");
@@ -86,12 +86,13 @@ public class SensitiveDataTest {
         map.put("reqParams", "username=liwei,password=e37$af6=");
         map.put("reqBody", user);
 
-        String logDetail = JSON.toJSONString(map);
+        ObjectMapper mapper = new ObjectMapper();
+        String logDetail = mapper.writeValueAsString(map);
         System.out.println("logDetail = " + logDetail);
 
-        Object log = JSON.parse(logDetail);
+        Object log = mapper.readValue(logDetail, Object.class);
 
-        SensitiveUtil.jsonFieldFilter(log);
+        // SensitiveUtil.jsonFieldFilter(log);
         System.out.println("log.toString() = " + log.toString());
     }
 

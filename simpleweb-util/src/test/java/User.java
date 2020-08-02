@@ -3,9 +3,13 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * @author x Date: 2020-05-21 16:14
+ * 描述：
+ *
+ * @author x
+ * @since 2020-08-01 11:57
  */
 @Data
 public class User {
@@ -13,10 +17,12 @@ public class User {
     private String username;
     private String password;
     private List<Card> cards;
+    private Date birthDay;
     private User wife;
 }
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 class Card {
     private Integer serial;
