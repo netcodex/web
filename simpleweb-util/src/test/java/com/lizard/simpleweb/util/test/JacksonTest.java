@@ -1,5 +1,10 @@
+package com.lizard.simpleweb.util.test;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -8,6 +13,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -149,9 +156,54 @@ public class JacksonTest {
         System.out.println("objectNode.toPrettyString() = " + objectNode.toPrettyString());
     }
 
+    /**
+     * json解析器
+     *
+     * @throws IOException
+     *             IO异常
+     */
     @Test
-    public void testJsonParser() {
-
+    public void testJsonParser() throws IOException {
+        String content = mapper.writeValueAsString(TestUtil.getUser());
+        System.out.println("content = " + content);
+        // 创建JsonParser
+        JsonFactory factory = mapper.getFactory();
+        JsonParser parser = factory.createParser(content);
+        // 解析json中所有密码字段
+        while (!parser.isClosed()) {
+            JsonToken jsonToken = parser.nextToken();
+            if (jsonToken == JsonToken.FIELD_NAME) {
+                String currentName = parser.getCurrentName();
+                jsonToken = parser.nextToken();
+                if (jsonToken == JsonToken.VALUE_STRING && "password".equals(currentName)) {
+                    String value = parser.getValueAsString();
+                    System.out.println(currentName + ":" + value);
+                }
+            }
+        }
     }
 
+    /**
+     * JsonGenerator用于从Java对象（或代码从中生成JSON的任何数据结构）生成JSON
+     */
+    @Test
+    public void testJsonGenerator() throws IOException {
+        // 创建JsonGenerator
+        JsonFactory factory = mapper.getFactory();
+        try (StringWriter writer = new StringWriter()) {
+            JsonGenerator jsonGenerator = factory.createGenerator(writer);
+
+            jsonGenerator.writeStartObject();
+            jsonGenerator.writeStringField("username", "blob");
+            jsonGenerator.writeNumberField("score", 36.5);
+            jsonGenerator.writeEndObject();
+
+            jsonGenerator.flush();
+            jsonGenerator.close();
+
+            writer.flush();
+            String json = writer.toString();
+            System.out.println("json = " + json);
+        }
+    }
 }

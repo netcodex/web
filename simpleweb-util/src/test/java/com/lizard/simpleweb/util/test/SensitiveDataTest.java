@@ -1,3 +1,5 @@
+package com.lizard.simpleweb.util.test;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lizard.simpleweb.util.SensitiveUtil;

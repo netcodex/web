@@ -1,3 +1,5 @@
+package com.lizard.simpleweb.util.test;
+
 import com.lizard.simpleweb.util.XSSFilter;
 import org.apache.commons.text.StringEscapeUtils;
 import org.junit.jupiter.api.Test;
