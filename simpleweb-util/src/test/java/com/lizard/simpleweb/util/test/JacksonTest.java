@@ -12,6 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.lizard.simpleweb.util.test.model.User;
+import com.lizard.simpleweb.util.test.util.TestUtil;
 
 import java.io.IOException;
 import java.io.StringWriter;

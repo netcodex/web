@@ -1,4 +1,4 @@
-package com.lizard.simpleweb.util.test;
+package com.lizard.simpleweb.util.test.model;
 
 import java.util.Date;
 import java.util.List;
@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 描述：
+ * 描述：用户数据模型
  *
  * @author x
  * @since 2020-08-01 11:57
@@ -21,13 +21,4 @@ public class User {
     private List<Card> cards;
     private Date birthDay;
     private User wife;
-}
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-class Card {
-    private Integer serial;
-    private String bankName;
-    private String password;
 }

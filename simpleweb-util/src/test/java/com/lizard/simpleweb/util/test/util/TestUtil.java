@@ -1,4 +1,7 @@
-package com.lizard.simpleweb.util.test;
+package com.lizard.simpleweb.util.test.util;
+
+import com.lizard.simpleweb.util.test.model.Card;
+import com.lizard.simpleweb.util.test.model.User;
 
 import java.util.ArrayList;
 import java.util.Date;

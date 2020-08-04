@@ -3,6 +3,8 @@ package com.lizard.simpleweb.util.test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lizard.simpleweb.util.SensitiveUtil;
+import com.lizard.simpleweb.util.test.model.Card;
+import com.lizard.simpleweb.util.test.model.User;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
