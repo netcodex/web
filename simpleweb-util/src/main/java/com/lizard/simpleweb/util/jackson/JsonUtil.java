@@ -1,4 +1,4 @@
-package com.lizard.simpleweb.util;
+package com.lizard.simpleweb.util.jackson;
 
 /**
  * 描述：基于jackson的Json工具类

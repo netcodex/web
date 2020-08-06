@@ -1,4 +1,4 @@
-package com.lizard.simpleweb;
+package com.lizard.simpleweb.filter;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Context;

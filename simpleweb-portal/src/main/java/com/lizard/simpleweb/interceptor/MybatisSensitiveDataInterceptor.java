@@ -1,4 +1,4 @@
-package com.lizard.simpleweb;
+package com.lizard.simpleweb.interceptor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;

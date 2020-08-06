@@ -1,4 +1,4 @@
-package com.lizard.simpleweb;
+package com.lizard.simpleweb.interceptor;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
