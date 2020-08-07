@@ -1,4 +1,4 @@
-package com.lizard.simpleweb.service.impl;
+package com.lizard.simpleweb.service;
 
 import org.springframework.stereotype.Service;
 
