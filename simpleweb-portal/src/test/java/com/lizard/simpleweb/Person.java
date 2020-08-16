@@ -1,9 +1,10 @@
-package com.lizard.simpleweb.bean;
+package com.lizard.simpleweb;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.lizard.simpleweb.bean.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
