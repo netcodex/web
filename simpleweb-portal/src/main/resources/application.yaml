@@ -1,7 +1,11 @@
-spring:
-  profiles:
-    include: [application-datasource.yaml]
 mybatis:
   # 驼峰命名规范 如：数据库字段是  order_id 那么 实体字段就要写成 orderId
   configuration.map-underscore-to-camel-case: true
 
+jasypt:
+  encryptor:
+    # 加密所需的salt(盐)
+    password: oZ9tV2nL3ETcOODJEVqEbA==
+    # 3.0.x版本之后默认算法改为：PBEWITHHMACSHA512ANDAES_256，要解密以前加密的值，应该加如下配置
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
