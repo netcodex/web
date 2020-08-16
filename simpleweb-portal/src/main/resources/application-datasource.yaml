@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.116.129:3306/xdb?serverTimezone=GMT&useSSL=true
+      username: scott
+      password: tiger
+      #\u914D\u7F6E\u521D\u59CB\u5316\u5927\u5C0F\u3001\u6700\u5C0F\u3001\u6700\u5927
+      initial-size: 1
+      min-idle: 1
+      max-active: 10
+      #\u914D\u7F6E\u83B7\u53D6\u8FDE\u63A5\u7B49\u5F85\u8D85\u65F6\u7684\u65F6\u95F4
+      max-wait: 60000
+      #\u914D\u7F6E\u4E00\u4E2A\u8FDE\u63A5\u5728\u6C60\u4E2D\u6700\u5C0F\u751F\u5B58\u7684\u65F6\u95F4\uFF0C\u5355\u4F4D\u662F\u6BEB\u79D2
+      timeBetweenEvictionRunsMillis: 600000
+      maxEvictableIdleTimeMillis: 900000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      keepAlive: true
+      phyMaxUseCount: 500
+      #\u914D\u7F6E\u76D1\u63A7\u7EDF\u8BA1\u62E6\u622A\u7684filters
+      filters: stat
+
+
