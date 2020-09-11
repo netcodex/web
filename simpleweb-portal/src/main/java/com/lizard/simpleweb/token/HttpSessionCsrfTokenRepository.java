@@ -26,7 +26,8 @@ public class HttpSessionCsrfTokenRepository implements CsrfTokenRepository {
     }
 
     @Override
-    public void saveToken(CsrfToken csrfToken, HttpServletRequest request, HttpServletResponse response) {
+    public void saveToken(
+            CsrfToken csrfToken, HttpServletRequest request, HttpServletResponse response) {
         if (csrfToken == null) {
             HttpSession session = request.getSession(false);
             if (session != null) {

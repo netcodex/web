@@ -8,7 +8,7 @@ import org.apache.commons.text.StringEscapeUtils;
  * @author x
  * @since 2020-07-07 22:58
  */
-public class XSSFilter {
+public class XSSUtil {
 
     public static String escapeScript(String script) {
         return StringEscapeUtils.escapeEcmaScript(script);

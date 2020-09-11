@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>simpleweb-task</artifactId>
+    <name>web-task</name>
 
 
 </project>

@@ -1,6 +1,6 @@
 package com.lizard.simpleweb.util.test;
 
-import com.lizard.simpleweb.util.XSSFilter;
+import com.lizard.simpleweb.util.XSSUtil;
 import org.apache.commons.text.StringEscapeUtils;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ public class XSStest {
         String script = "JSON.parse\"<iframe>\"";
         String script2 = "JSON.parse\"<iframe>\"";
         String script3 = "<script>alter(1);</script>";
-        String after = XSSFilter.escapeScript(script);
+        String after = XSSUtil.escapeScript(script);
         String html4 = StringEscapeUtils.escapeHtml4(script);
         System.out.println("html4 = " + html4);
         System.out.println("after = " + after);

@@ -17,7 +17,6 @@ public class DefaultCsrfToken implements CsrfToken {
         this.token = token;
     }
 
-
     @Override
     public String getHeaderName() {
         return headerName;

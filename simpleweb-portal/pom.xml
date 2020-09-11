@@ -12,7 +12,7 @@
     <!-- 项目信息,group_id直接从父项目继承-->
     <artifactId>simpleweb-portal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>portal</name>
+    <name>web-portal</name>
     <description>simpleWeb门户</description>
     <packaging>war</packaging>
 

@@ -9,6 +9,8 @@
         <module>simpleweb-portal</module>
         <module>simpleweb-controller</module>
         <module>simpleweb-task</module>
+        <module>simpleweb-session</module>
+        <module>simpleweb-common</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,7 +21,7 @@
     <groupId>com.lizard</groupId>
     <artifactId>simpleweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>simpleWeb</name>
+    <name>web</name>
     <description>simpleWeb demo project for Spring Boot</description>
 
     <properties>

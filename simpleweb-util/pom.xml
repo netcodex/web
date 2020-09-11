@@ -9,7 +9,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <name>simpleWebUtil</name>
+    <name>web-util</name>
     <version>0.0.1-SNAPSHOT</version>
     <description>SimpleWeb工具集</description>
     <packaging>jar</packaging>

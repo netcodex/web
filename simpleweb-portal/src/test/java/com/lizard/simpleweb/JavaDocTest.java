@@ -21,20 +21,19 @@ public class JavaDocTest {
      * 链接到当前类中的方法：{@link #main(String[])}
      * <p>
      * 3.类或使用方法的示例
+     *
      * <pre class="domain">
-     *  public static void register(){
-     *      docker.registerService();
-     *  }
-     *  </pre>
+     * public static void register() {
+     *     docker.registerService();
+     * }
+     * </pre>
+     * <p>
      * 4.怎么换行？
      * <p>
-     * 5.项目符号
-     * <ui>
+     * 5.项目符号 <ui>
      * <li>String</li>
      * <li>Boolean</li>
-     * <li>Integer</li>
-     * </ui>
-     * 6.参考类或方法
+     * <li>Integer</li> </ui> 6.参考类或方法
      * <p>
      * 以上可看着是描述部分，以下是常用标记部分：
      *
