@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * 描述：
+ * 描述：自定义时间序列化
  *
  * @author x
  * @since 2020-09-12 0:57

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 
 /**
- * 描述：
+ * 描述：自定义字符串去空格反序列化器
  *
  * @author x
  * @since 2020-09-12 0:23

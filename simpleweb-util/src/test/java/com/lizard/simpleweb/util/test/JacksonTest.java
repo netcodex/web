@@ -12,17 +12,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.lizard.simpleweb.util.jackson.JsonUtil;
 import com.lizard.simpleweb.util.test.model.User;
 import com.lizard.simpleweb.util.test.util.TestUtil;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 /**
  * 描述：Jackson测试类
@@ -58,13 +59,13 @@ public class JacksonTest {
         // JsonParser.Feature for configuring parsing settings:
 
         // to allow C/C++ style comments in JSON (non-standard, disabled by default)
-        // (note: with Jackson 2.5, there is also `mapper.enable(feature)` / `mapper.disable(feature)`)
+        // (note: with Jackson 2.5, there is also `mapper.enable(feature)` /
+        // `mapper.disable(feature)`)
         mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
         // to allow (non-standard) unquoted field names in JSON:
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         // to allow use of apostrophes (single quotes), non standard
         mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-
     }
 
     @Test
@@ -82,14 +83,14 @@ public class JacksonTest {
 
         String mapStr = mapper.writeValueAsString(map);
         System.out.println("mapStr = " + mapStr);
-        Map<Integer, String> readMap = mapper.readValue(mapStr, new TypeReference<Map<Integer, String>>() {});
+        Map<Integer, String> readMap =
+                mapper.readValue(mapStr, new TypeReference<Map<Integer, String>>() {
+                });
         System.out.println("readMap = " + readMap);
     }
 
     @Test
-    public void testCustomDeserializer() {
-
-    }
+    public void testCustomDeserializer() {}
 
     @Test
     public void testTreeModel() throws JsonProcessingException {
@@ -161,8 +162,7 @@ public class JacksonTest {
     /**
      * json解析器
      *
-     * @throws IOException
-     *             IO异常
+     * @throws IOException IO异常
      */
     @Test
     public void testJsonParser() throws IOException {
@@ -185,9 +185,7 @@ public class JacksonTest {
         }
     }
 
-    /**
-     * JsonGenerator用于从Java对象（或代码从中生成JSON的任何数据结构）生成JSON
-     */
+    /** JsonGenerator用于从Java对象（或代码从中生成JSON的任何数据结构）生成JSON */
     @Test
     public void testJsonGenerator() throws IOException {
         // 创建JsonGenerator
@@ -207,5 +205,20 @@ public class JacksonTest {
             String json = writer.toString();
             System.out.println("json = " + json);
         }
+    }
+
+    @Test
+    public void testJsonUtil() {
+        User user = TestUtil.getUser();
+        String jsonStr = JsonUtil.toJsonString(user);
+        System.out.println("jsonStr = " + jsonStr);
+
+        List<String> list = TestUtil.getStringList();
+        String[] arr = {"alex", "bob", "clerk"};
+
+        String listString = JsonUtil.toJsonString(arr);
+        System.out.println("listString = " + listString);
+        List<String> list1 = JsonUtil.parseArray(listString, String.class);
+        System.out.println("list1 = " + list1);
     }
 }

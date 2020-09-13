@@ -1,7 +1,7 @@
 package com.lizard.simpleweb.util;
 
 /**
- * 描述：
+ * 描述：缓存工具类
  *
  * @author x
  * @since 2020-08-24 23:44
