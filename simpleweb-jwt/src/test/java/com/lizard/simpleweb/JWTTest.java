@@ -35,7 +35,7 @@ public class JWTTest {
     @Test
     public void testJWTParse() {
         String token =
-            "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDAxIiwiYXVkIjoiYXBpQXVkIiwic3ViIjoiemFjayIsImlzcyI6InJlc3RhcGl1c2VyIiwiaWF0IjoxNTkyMjM1MDIyLCJleHAiOjE1OTIyMzU2MjIsIm5iZiI6MTU5MjIzNTAyMn0._ukpg7o5ko9ZMfAb2MrFxHuGnpy1jM-44MFE9mT8XoM";
+                "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDAxIiwiYXVkIjoiYXBpQXVkIiwic3ViIjoiemFjayIsImlzcyI6InJlc3RhcGl1c2VyIiwiaWF0IjoxNjAwMDk2OTIzLCJleHAiOjE2MDAwOTc1MjQsIm5iZiI6MTYwMDA5NjkyM30.qBA2RQPhVUEPwi0ed8Er_-B_aHTJw4bAqTYedDpCYrM";
         Optional<Claims> claims = JwtHelper.parseJWT(token, webToken.getSecret());
         Claims claim = claims.orElse(new DefaultClaims());
         String issuer = claim.getIssuer();

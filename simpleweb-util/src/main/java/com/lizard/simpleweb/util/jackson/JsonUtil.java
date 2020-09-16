@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -117,6 +118,15 @@ public class JsonUtil {
         } catch (JsonProcessingException e) {
             throw new JsonException(
                     e.getMessage() + ", json: {}, expected value type: {}", jsonStr, valueType);
+        }
+    }
+
+    public static String findValue(String jsonStr, String path) {
+        try {
+            JsonNode jsonNode = defaultMapper.readTree(jsonStr);
+            return jsonNode.at(path).asText();
+        } catch (JsonProcessingException e) {
+            throw new JsonException(e.getMessage() + ", json: {}, path: {}", jsonStr, path);
         }
     }
 

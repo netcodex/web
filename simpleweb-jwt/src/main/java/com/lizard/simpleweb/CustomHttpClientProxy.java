@@ -23,15 +23,22 @@ public class CustomHttpClientProxy implements RestTemplateCustomizer {
     @Override
     public void customize(RestTemplate restTemplate) {
         HttpHost proxy = new HttpHost(PROXY);
-        HttpClient client = HttpClientBuilder.create().setRoutePlanner(new DefaultProxyRoutePlanner(proxy) {
-            @Override
-            protected HttpHost determineProxy(HttpHost target, HttpRequest request, HttpContext context)
-                throws HttpException {
-                if (target.getHostName().equals(EXCLUSION)) {
-                    return null;
-                }
-                return super.determineProxy(target, request, context);
-            }
-        }).build();
+        HttpClient client =
+                HttpClientBuilder.create()
+                        .setRoutePlanner(
+                                new DefaultProxyRoutePlanner(proxy) {
+                                    @Override
+                                    protected HttpHost determineProxy(
+                                            HttpHost target,
+                                            HttpRequest request,
+                                            HttpContext context)
+                                            throws HttpException {
+                                        if (target.getHostName().equals(EXCLUSION)) {
+                                            return null;
+                                        }
+                                        return super.determineProxy(target, request, context);
+                                    }
+                                })
+                        .build();
     }
 }

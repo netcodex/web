@@ -1,6 +1,11 @@
 package com.lizard.simpleweb.filter;
 
-import java.io.IOException;
+import com.lizard.simpleweb.util.JwtHelper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -9,15 +14,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.util.StringUtils;
-
-import com.lizard.simpleweb.util.JwtHelper;
-
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
 
 /**
  * 描述：JWT过滤器
@@ -27,18 +24,22 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class JwtFilter implements Filter {
-    // X-Auth-Token: Bearer <token>
+    /**
+     * X-Auth-Token: Bearer <token>
+     */
     private static final String X_AUTH_REFER = "X-Auth-Token";
+
     private static final String X_AUTH_PREFIX = "Bearer";
 
     @Value("${webtoken.base64Secret}")
     private String base64Secret;
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-        throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest)servletRequest;
-        HttpServletResponse response = (HttpServletResponse)servletResponse;
+    public void doFilter(
+            ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+            throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         String method = request.getMethod();
         // 忽略带JwtIgnore注解的请求, 不做后续token认证校验
         if (HttpMethod.OPTIONS.matches(method)) {
@@ -54,5 +55,4 @@ public class JwtFilter implements Filter {
         JwtHelper.parseJWT(token, base64Secret);
         filterChain.doFilter(request, response);
     }
-
 }

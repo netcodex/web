@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -220,5 +221,15 @@ public class JacksonTest {
         System.out.println("listString = " + listString);
         List<String> list1 = JsonUtil.parseArray(listString, String.class);
         System.out.println("list1 = " + list1);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("userName", "alex");
+        map.put("birth", new Date());
+        String mapString = JsonUtil.toJsonString(map);
+        System.out.println("mapString = " + mapString);
+
+        Map<String, String> parseMap = JsonUtil.parseMap(mapString, String.class);
+
+        System.out.println("parseMap = " + parseMap);
     }
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Locale;
 
+import com.lizard.simpleweb.util.jackson.JsonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +22,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 
-import com.alibaba.fastjson.JSON;
 import com.lizard.simpleweb.model.ApicUser;
 
 /**
@@ -138,7 +138,7 @@ public class RestTemplateTest {
         headers.put(HttpHeaders.CONTENT_TYPE,
             Arrays.asList(MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE));
         // 如果传入的是Json格式的字符串，则Ctrl应该以@RequestBody接收
-        String userJsonStr = JSON.toJSONString(new ApicUser("bob", "bob@gmail.com"));
+        String userJsonStr = JsonUtil.toJsonString(new ApicUser("bob", "bob@gmail.com"));
         System.out.println("userJsonStr = " + userJsonStr);
         HttpEntity<String> httpEntity = new HttpEntity<>(userJsonStr, headers);
 

@@ -8,7 +8,7 @@ import javax.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -54,7 +54,7 @@ public class WebMVConfig implements WebMvcConfigurer {
      */
     @Bean
     public RestTemplate registryRestTemplate() {
-        RestTemplate restTemplate = new RestTemplate(new OkHttp3ClientHttpRequestFactory());
+        RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
         restTemplate.setInterceptors(Collections.singletonList(new RestTemplateInterceptor()));
         restTemplate.setErrorHandler(new CustomResponseErrorHandler());
         return restTemplate;
