@@ -232,4 +232,22 @@ public class JacksonTest {
 
         System.out.println("parseMap = " + parseMap);
     }
+
+    @Test
+    public void testJsonSanitizer() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userName", "John\",\\\"role\":\"admin");
+        map.put("password", "&t34@yu%5+");
+        map.put("feature", "<script>alert(1)'</script>");
+        map.put("test", 0xAB);
+        map.put("test1", 012);
+        map.put("test2", 'a');
+        map.put("test3", "[1,2,3,]");
+        String mapString = JsonUtil.toJsonString(map);
+        System.out.println("mapString = " + mapString);
+
+        Map<String, String> parseMap = JsonUtil.parseMap(mapString, String.class);
+
+        System.out.println("parseMap = " + parseMap);
+    }
 }

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.lizard.simpleweb.util.jackson.databind.DateTimeDeserializer;
 import com.lizard.simpleweb.util.jackson.databind.DateTimeSerializer;
+import com.lizard.simpleweb.util.jackson.databind.JsonSanitizer;
 import com.lizard.simpleweb.util.jackson.exception.JsonException;
 
 import java.lang.reflect.Type;
@@ -98,6 +99,7 @@ public class JsonUtil {
         }
         JavaType javaType = defaultMapper.getTypeFactory().constructType(type);
         try {
+            jsonStr = JsonSanitizer.sanitize(jsonStr);
             return defaultMapper.readValue(jsonStr, javaType);
         } catch (JsonProcessingException e) {
             throw new JsonException(
@@ -114,6 +116,7 @@ public class JsonUtil {
                         .getTypeFactory()
                         .constructMapType(HashMap.class, String.class, valueType);
         try {
+            jsonStr = JsonSanitizer.sanitize(jsonStr);
             return defaultMapper.readValue(jsonStr, mapType);
         } catch (JsonProcessingException e) {
             throw new JsonException(
