@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>simpleweb-util</module>
-        <module>simpleweb-jwt</module>
-        <module>simpleweb-portal</module>
-        <module>simpleweb-controller</module>
-        <module>simpleweb-task</module>
+        <module>web-util</module>
+        <module>web-jwt</module>
+        <module>web-portal</module>
+        <module>web-controller</module>
+        <module>web-task</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -17,10 +17,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lizard</groupId>
-    <artifactId>simpleweb</artifactId>
+    <artifactId>web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>simpleWeb</name>
-    <description>simpleWeb demo project for Spring Boot</description>
+    <name>web</name>
+    <description>simple web demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -76,6 +76,20 @@
             <version>${jasypt.version}</version>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <name>releases</name>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <!--上传快照-->
+            <id>maven-snapshots</id>
+            <name>snapshots</name>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
         <plugins>
