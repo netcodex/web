@@ -4,6 +4,7 @@ import com.lizard.web.util.test.model.Card;
 import com.lizard.web.util.test.model.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -44,5 +45,9 @@ public class TestUtil {
         user.setCards(cards);
         user.setWife(wife);
         return user;
+    }
+
+    public static List<String> getStringList() {
+        return Arrays.asList("A", "B", "C");
     }
 }

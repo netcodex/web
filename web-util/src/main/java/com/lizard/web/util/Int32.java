@@ -1,7 +1,5 @@
 package com.lizard.web.util;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * 描述：Int工具类
  *
@@ -11,15 +9,13 @@ import org.apache.commons.lang3.StringUtils;
 public class Int32 {
     /**
      * 字符串解析为int
-     * 
-     * @param value
-     *            被解析字符串
-     * @param defaultValue
-     *            默认值
+     *
+     * @param value        被解析字符串
+     * @param defaultValue 默认值
      * @return 解析结果
      */
     public static int parse(String value, int defaultValue) {
-        if (StringUtils.isEmpty(value)) {
+        if (value == null || value.length() == 0) {
             return defaultValue;
         }
         try {

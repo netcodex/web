@@ -35,7 +35,6 @@ public class SensitiveUtil {
     public static final String field = "password";
 
     public static boolean hasSensitiveItem(String str) {
-        Pattern pattern = Pattern.compile("");
         return false;
     }
 
