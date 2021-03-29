@@ -1,30 +1,38 @@
 package com.lizard.web.util.test;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.node.JsonNodeType;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.lizard.web.util.jackson.JsonUtil;
-import com.lizard.web.util.test.model.User;
-import com.lizard.web.util.test.util.TestUtil;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.TreeNode;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.node.JsonNodeType;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.lizard.web.util.jackson.JsonUtil;
+import com.lizard.web.util.test.model.User;
+import com.lizard.web.util.test.util.TestUtil;
 
 /**
  * 描述：Jackson测试类
@@ -84,9 +92,7 @@ public class JacksonTest {
 
         String mapStr = mapper.writeValueAsString(map);
         System.out.println("mapStr = " + mapStr);
-        Map<Integer, String> readMap =
-                mapper.readValue(mapStr, new TypeReference<Map<Integer, String>>() {
-                });
+        Map<Integer, String> readMap = mapper.readValue(mapStr, new TypeReference<Map<Integer, String>>() {});
         System.out.println("readMap = " + readMap);
     }
 
@@ -163,7 +169,8 @@ public class JacksonTest {
     /**
      * json解析器
      *
-     * @throws IOException IO异常
+     * @throws IOException
+     *             IO异常
      */
     @Test
     public void testJsonParser() throws IOException {
@@ -249,5 +256,135 @@ public class JacksonTest {
         Map<String, String> parseMap = JsonUtil.parseMap(mapString, String.class);
 
         System.out.println("parseMap = " + parseMap);
+    }
+
+    @Test
+    public void testJsonDeserializeAnnotation() throws IOException {
+        Map<String, Object> apiMap = new HashMap<>();
+
+        Map<String, Map<String, String>> map = new HashMap<>();
+        Map<String, String> subMap = new HashMap<>();
+        subMap.put("enable", "true");
+        subMap.put("timeOut", "10");
+        map.put("http", subMap);
+        Map<String, String> subMap1 = new HashMap<>();
+        subMap1.put("host", "127.0.0.1");
+        subMap1.put("port", "8089");
+        map.put("cros", subMap1);
+
+        apiMap.put("api_name", "com.lizard.it.odm");
+        apiMap.put("api_setting", map);
+
+        String json = mapper.writeValueAsString(apiMap);
+        System.out.println("json = " + json);
+
+        Api api = mapper.readValue(json, Api.class);
+
+        System.out.println("api = " + mapper.writeValueAsString(api));
+    }
+
+}
+
+class Api {
+    @JsonProperty("api_name")
+    private String apiName;
+
+    @JsonProperty("api_setting")
+    @JsonDeserialize(using = PluginDeserializer.class)
+    private Set<Plugin> plugins;
+
+    public String getApiName() {
+        return apiName;
+    }
+
+    public void setApiName(String apiName) {
+        this.apiName = apiName;
+    }
+
+    public Set<Plugin> getPlugins() {
+        return plugins;
+    }
+
+    public void setPlugins(Set<Plugin> plugins) {
+        this.plugins = plugins;
+    }
+}
+
+class Plugin {
+    private String pluginName;
+
+    private Set<PluginParam> params = new HashSet<>();
+
+    public static class PluginParam {
+        private String paramName;
+
+        private String paramValue;
+
+        public PluginParam(String paramName, String paramValue) {
+            this.paramName = paramName;
+            this.paramValue = paramValue;
+        }
+
+        public String getParamName() {
+            return paramName;
+        }
+
+        public void setParamName(String paramName) {
+            this.paramName = paramName;
+        }
+
+        public String getParamValue() {
+            return paramValue;
+        }
+
+        public void setParamValue(String paramValue) {
+            this.paramValue = paramValue;
+        }
+    }
+
+    public String getPluginName() {
+        return pluginName;
+    }
+
+    public void setPluginName(String pluginName) {
+        this.pluginName = pluginName;
+    }
+
+    public Set<PluginParam> getParams() {
+        return params;
+    }
+
+    public void setParams(Set<PluginParam> params) {
+        this.params = params;
+    }
+
+    public void add(String paramName, String paramValue) {
+        params.add(new PluginParam(paramName, paramValue));
+    }
+}
+
+class PluginDeserializer extends JsonDeserializer<Set<Plugin>> {
+
+    @Override
+    public Set<Plugin> deserialize(JsonParser parser, DeserializationContext context)
+        throws IOException, JsonProcessingException {
+        TreeNode treeNode = parser.readValueAsTree();
+        Set<Plugin> plugins = new HashSet<>();
+
+        treeNode.fieldNames().forEachRemaining((field) -> {
+            Plugin plugin = new Plugin();
+            plugin.setPluginName(field);
+
+            TreeNode paramNode = treeNode.get(field);
+
+            paramNode.fieldNames().forEachRemaining((key) -> {
+                TreeNode valueNode = paramNode.get(key);
+                plugin.add(key, valueNode.toString());
+            });
+
+            plugins.add(plugin);
+        });
+
+        return plugins;
     }
 }

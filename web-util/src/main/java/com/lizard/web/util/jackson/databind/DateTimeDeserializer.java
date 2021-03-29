@@ -24,7 +24,7 @@ public class DateTimeDeserializer extends StdDeserializer<Date> {
 
     @Override
     public Date deserialize(JsonParser parser, DeserializationContext context)
-            throws IOException, JsonProcessingException {
+            throws IOException {
         JsonToken token = parser.currentToken();
         if (token == JsonToken.VALUE_STRING) {
             String text = parser.getText().trim();
