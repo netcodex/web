@@ -39,7 +39,7 @@ public class ResponseHelper {
         return build().fail(true).code(code).message(message).data(data);
     }
 
-    public static Response build() {
+    private static Response build() {
         return new Response();
     }
 
