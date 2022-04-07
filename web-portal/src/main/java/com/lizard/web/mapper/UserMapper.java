@@ -16,6 +16,13 @@ import com.lizard.web.bean.User;
  */
 @Mapper
 public interface UserMapper {
+
+    /**
+     * 根据ID查询单个用户信息
+     *
+     * @param id 用户id
+     * @return 用户基本信息
+     */
     @Select("select * from apic_user where id = #{id}")
     User getUserById(@Param("id") Integer id);
 

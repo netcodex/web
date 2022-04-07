@@ -9,14 +9,19 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>web-task</artifactId>
+  <artifactId>web-wrokflow</artifactId>
 
   <dependencies>
-    <!-- 引入quartz测试定时任务 -->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-quartz</artifactId>
-      <version>2.3.12.RELEASE</version>
+      <groupId>org.activiti</groupId>
+      <artifactId>activiti-spring-boot-starter</artifactId>
+      <version>7.1.0.M6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
     </dependency>
   </dependencies>
+
 </project>

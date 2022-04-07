@@ -9,14 +9,12 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>web-task</artifactId>
-
+  <artifactId>web-cache</artifactId>
   <dependencies>
-    <!-- 引入quartz测试定时任务 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-quartz</artifactId>
-      <version>2.3.12.RELEASE</version>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
+
 </project>
