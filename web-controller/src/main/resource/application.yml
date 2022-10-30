@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: controller
+
+server:
+  port: 8090
+  servlet:
+    context-path: /ctrl
+
+# dubbo配置加载顺序：虚拟机启动参数>
+dubbo:
+  application:
+    name: controller
+  protocol:
+    name: dubbo
+    port: 6090
+  registry:
+    id: web-registry
+    address: zookeeper://127.0.0.1:2181
+  config-center:
+    address: zookeeper://127.0.0.1:2181
+  metadata-report:
+    address: zookeeper://127.0.0.1:2181

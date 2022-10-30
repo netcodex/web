@@ -26,4 +26,12 @@ public class JasyptTest {
         System.out.println("decryptUsername = " + decryptUsername);
         System.out.println("decryptPassword = " + decryptPassword);
     }
+
+    @Test
+    public void testDecrypt() {
+        BasicTextEncryptor encryptor = new BasicTextEncryptor();
+        encryptor.setPassword("oZ9tV2nL3ETcOODJEVqEbA==");
+        String decrypt = encryptor.decrypt("oJKOdBKhCNTC4byNumrtVA==");
+        System.out.println("decrypt = " + decrypt);
+    }
 }

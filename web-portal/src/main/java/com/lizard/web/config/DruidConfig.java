@@ -1,4 +1,4 @@
-package com.lizard.web;
+package com.lizard.web.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 

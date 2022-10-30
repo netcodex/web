@@ -142,7 +142,7 @@ public class SecurityValidator {
      * @param input string input value
      * @return boolean response if input is empty or not
      */
-    private final boolean isEmpty(String input) {
+    private boolean isEmpty(String input) {
         return (input == null || input.trim().length() == 0);
     }
 }

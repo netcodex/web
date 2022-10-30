@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JwtHelper {
     private static final String AUDIENCE = "apiAud";
+
     /**
      * 解析JWT
      * 

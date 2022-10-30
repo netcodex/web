@@ -1,4 +1,4 @@
-package com.lizard.web;
+package com.lizard.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,0 +1,10 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+    <!-- 全局超时配置 -->
+    <dubbo:provider timeout="1500"/>
+    <!-- 服务提供者暴露服务配置。dubbo推荐在Provider上尽量多配置Consumer端属性，因为作为服务的提供者，比服务使用方更清楚服务性能参数，如调用的超时时间，合理的重试次数，等等 -->
+    <dubbo:service interface="com.lizard.web.UserService" ref="userServiceImplV2" loadbalance="roundrobin" weight="150"/>
+</beans>
